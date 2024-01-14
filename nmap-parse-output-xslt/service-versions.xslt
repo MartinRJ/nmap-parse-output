@@ -11,7 +11,7 @@
     
     <xsl:template match="/">
         <xsl:for-each select="/nmaprun/host/ports/port/service[generate-id() = generate-id(key('serviceid', concat(../../address/@addr, '|', @name, '|', @version))[1])]">
-            <xsl:value-of select="../../address/@addr"/>
+            <xsl:value-of select="../../../../address[@addrtype='ipv4']/@addr"/>
             <xsl:text>: </xsl:text>
             <xsl:value-of select="@name"/>
             <xsl:text>: </xsl:text>
