@@ -86,6 +86,12 @@ Rerun TCP scan for all alive hosts but only scan open ports found in the previou
 
       $ for host in ./nmap-parse-output scan.xml hosts; do nmap -sSVC -p $(./nmap-parse-output scan.xml include $host | nmap-parse-output - ports) -oA $host.xml -vv -Pn; done
 
+## vuln.py usage
+      With vuln.py you can use a local installation of CVE-Search (tested with https://github.com/cve-search/CVE-Search-Docker) to scan the nmap scanner results (from an .xml file) for vulnerabilities, using cpe-json
+      Todo: adjust the path to nmap-parse-output in line 14.
+      Usage: python3 vuln.py '/path/to/nmap-scanner-result.xml' 
+      It will print found vulnerabilities in the terminal, and save them as .json in the folder of the xml-file, appending '_cve_sresults.json' to the filename, and add a counter if the file exists.
+
 ## Usage
 
       Usage: ./nmap-parse-output [options]... <nmap-xml-output> <command> [command-parameters]...
