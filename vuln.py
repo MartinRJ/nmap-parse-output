@@ -18,7 +18,7 @@ def parse_nmap_output(xml_file):
 def query_cve_search(cpe_string):
     # Formatting the CPE string for the API call
     cpe_api_string = cpe_string.replace(':', '%3A').replace('/', '%2F')
-    url = f'https://127.0.0.1/api/cvefor/{cpe_api_string}?limit=6'
+    url = f'https://127.0.0.1/api/cvefor/{cpe_api_string}?limit=15'
     headers = {'accept': 'application/json'}
 
     response = requests.get(url, headers=headers, verify=False)
