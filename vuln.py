@@ -50,7 +50,7 @@ def display_results(results):
     for host, services in results.items():
         print(f"Host: {host}")
         for service in services:
-            print(f"\tService: {service['service_name']}, Port: {service['port']}, Product: {service['product']}, Version: {service['version']}")
+            print(f"\tService: {service['service_name']}, Port: {service['port']}, Product: {service['product']}, Version: {service['version']}, CPE-String: {service['cpe']}")
             for cve_entry in service['cves']:
                 cve_id = cve_entry['id']
                 cvss_score = cve_entry.get('cvss', 'N/A')
@@ -75,6 +75,7 @@ def main():
                         'service_name': service.get('service_name'),
                         'product': service.get('product'),
                         'version': service.get('version'),
+                        'cpe': service.get('cpe'),
                         'cves': cve_results
                     }
                     results[host['host']] = results.get(host['host'], []) + [service_data]
